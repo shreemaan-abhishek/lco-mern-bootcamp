@@ -22,9 +22,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    password: {
+    encry_password: {
         type: String,
-        trim: true
+        required: true
     },
     salt: String,
     role: {
@@ -36,5 +36,7 @@ const userSchema = new mongoose.Schema({
         default: []
     }
 })
+
+
 
 module.exports = mongoose.model("User", userSchema)
