@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const crypto = require('crypto')
+const uuid = require('uuid') // perhaps I'll have to replace uuid with uuidv1 here
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -36,6 +38,16 @@ const userSchema = new mongoose.Schema({
         default: []
     }
 })
+
+userSchema.virtual("password")
+    .set(function(password){
+        this._password = password
+        this.salt = uuid()
+        this.encry_password = this.securePassword(password)
+    })
+    .get(function(){
+        return this._password
+    })
 
 userSchema.method = {
     securePassword: function(plainpassword){
