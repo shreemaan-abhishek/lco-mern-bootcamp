@@ -3,3 +3,8 @@ exports.signout = (req, res) => {
         message: "User signout"
     })
 }
+exports.signup = (req, res) => {
+    res.json({
+        message: "User signup!!"
+    })
+}
