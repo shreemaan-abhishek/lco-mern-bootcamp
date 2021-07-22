@@ -36,7 +36,7 @@ exports.updateUser = (req, res) => {
             user.encry_password = undefined
             user.createdAt = undefined
             user.updatedAt = undefined
-            return res.json(user)
+            res.json(user)
         }
     )
 }
