@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const { getProductById, createProduct, getPhoto } = require("../controllers/product")
+const { getProductById, createProduct, getPhoto, getProduct, deleteProduct, updateProduct } = require("../controllers/product")
 const { isSignedIn, isAuthenticated, isAdmin } = require("../controllers/auth")
 const { getUserById } = require("../controllers/user")
 
