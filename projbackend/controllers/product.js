@@ -28,7 +28,12 @@ exports.createProduct = (req, res) => {
             })
         }
 
-        //TODO: RESTRICTIONS ON FIELD
+        const { name, description, price, category, stock} = fields
+        if(!name || !description || !price || !category || !stock){
+            return res.status(400).json({
+                error: "Please include all fields"
+            })
+        }
         let product = new Product(fields)
 
         if(file.photo){
@@ -50,4 +55,17 @@ exports.createProduct = (req, res) => {
             res.json(product)
         })
     })
+}
+
+exports.getProduct = (req, res) => {
+    req.product.photo = undefined // this saves us time because media files are big
+    return res.json(req.product)
+}
+
+exports.getPhoto = (req, res, next) => {
+    if(req.product.photo.data){
+        res.set("Content-Type", req.product.photo.contentType)
+        return res.send(req.produt.photo.data)
+    }
+    next()
 }
