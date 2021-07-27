@@ -141,4 +141,22 @@ exports.updateProduct = (req, res) => {
         res.json(products);
       });
   };
+
+exports.updateStock = (req, res, next) => {
+    let operations = req.body.order.products.map( prod => {
+        return {
+            filter: {_id: prod._id},
+            updateOne: {$inc: {stock: -prod.count, sold: +prod.count}}
+        }
+    })
+    
+    Product.bulkWrite(operations, {}, (err, products) => {
+        if (err) {
+            return res.status(400).json({
+              error: "Bulk write failed"
+            });
+        }
+        next()
+    })
+}
   
