@@ -1,7 +1,8 @@
 import "../styles.css"
+import Base from "./Base"
 const Home = () => {
     return ( <div>
-        <h1 className="text-white">Hi</h1>
+        <Base/>
     </div> );
 }
  
