@@ -12,7 +12,7 @@ exports.getProductById = (req, res, next, id) => {
                 error: "Product not found"
             })
         }
-        req.profile = product
+        req.product = product
         next()
     })
 }
